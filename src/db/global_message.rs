@@ -17,7 +17,7 @@ impl GlobalMessage {
         let words = jieba
             .cut_for_search(text, false)
             .into_iter()
-            .filter(|x| x.trim().len() > 0)
+            .filter(|x| !x.trim().is_empty())
             .collect::<Vec<_>>()
             .join(" ");
 
@@ -49,7 +49,7 @@ impl GlobalMessage {
         let query_str = jieba
             .cut(query, false)
             .into_iter()
-            .filter(|x| x.trim().len() > 0)
+            .filter(|x| !x.trim().is_empty())
             .collect::<Vec<_>>()
             .join(" ");
 

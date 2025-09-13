@@ -48,7 +48,7 @@ impl Config {
         })?;
 
         if let Some(config) = rows.next() {
-            return Ok(config?);
+            return config;
         }
 
         Ok(Config {

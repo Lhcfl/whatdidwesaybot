@@ -2,9 +2,9 @@ use jieba_rs::Jieba;
 use rusqlite::Connection;
 use teloxide_core::{
     Bot,
-    payloads::{GetUpdatesSetters, SendMessageSetters},
-    prelude::{Request, Requester},
-    types::{AllowedUpdate, BotCommand, ParseMode, UpdateKind},
+    payloads::SendMessageSetters,
+    prelude::Requester,
+    types::ParseMode,
 };
 
 use crate::db::{config::Config, message::Message, user::User};

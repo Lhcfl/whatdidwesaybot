@@ -2,14 +2,14 @@ use jieba_rs::Jieba;
 use rusqlite::Connection;
 use teloxide_core::{
     Bot,
-    payloads::{GetUpdatesSetters, SendMessageSetters},
+    payloads::GetUpdatesSetters,
     prelude::{Request, Requester},
-    types::{AllowedUpdate, BotCommand, ParseMode, UpdateKind},
+    types::{AllowedUpdate, BotCommand, UpdateKind},
 };
 use tokio::signal;
 use tokio_util::sync::CancellationToken;
 
-use crate::db::{config::Config, init_a_db, message::Message, user::User};
+use crate::db::init_a_db;
 mod db;
 mod handlers;
 
