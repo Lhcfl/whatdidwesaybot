@@ -1,0 +1,11 @@
+[package]
+name = "whatdidwesaybot"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+jieba-rs = "0.8.1"
+rusqlite = { version = "0.37.0", features = ["bundled"] }
+teloxide-core = "0.13.0"
+tokio = { version = "1.47.1", features = ["rt-multi-thread", "macros", "signal"] }
+tokio-util = "0.7.16"
