@@ -1,11 +1,6 @@
 use jieba_rs::Jieba;
 use rusqlite::Connection;
-use teloxide_core::{
-    Bot,
-    payloads::SendMessageSetters,
-    prelude::Requester,
-    types::ParseMode,
-};
+use teloxide_core::{Bot, payloads::SendMessageSetters, prelude::Requester, types::ParseMode};
 
 use crate::db::{config::Config, message::Message, user::User};
 
@@ -40,8 +35,8 @@ pub async fn handle(
 
     let mut cfg = Config::get_or_default(conn, msg.chat.id.0, from.id.0).unwrap();
     if text.starts_with("/") {
-        if text.starts_with("/q ") {
-            let query = text[3..].trim();
+        if let Some(query) = text.strip_prefix("/q ") {
+            let query = query.trim();
 
             match Message::query(conn, jieba, msg.chat.id.0, query, 20) {
                 Ok(results) => {
@@ -73,7 +68,7 @@ pub async fn handle(
                     panic!("[ERROR] Failed to query messages: {}", e);
                 }
             }
-        } else if text == "/toggle_my_searchability" {
+        } else if text.starts_with("/toggle_my_searchability") {
             cfg.allow = 1 - cfg.allow;
             if let Err(e) = cfg.insert_or_update(conn) {
                 eprintln!(
